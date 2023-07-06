@@ -1,0 +1,20 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fiber-app
+    hostname: fiber-app
+    env_file:
+      - app.env
+    volumes:
+      - ./:/app
+    ports:
+      - 3010:3000
+    command: air -c .air.toml
+    networks:
+      - gofiber-net
+
+networks:
+  gofiber-net: ~
